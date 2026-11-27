@@ -1,7 +1,6 @@
 # Bernstein — Orchestrate Your Own Symphony of Containers
 
-[![CI Pipeline](https://github.com/Nexlein/Bernstein/actions/workflows/ci.yml/badge.svg)](https://github.com/Nexlein/Bernstein/actions/workflows/ci.yml)
-[![Epitech Mirror](https://github.com/Nexlein/Bernstein/actions/workflows/mirror.yml/badge.svg)](https://github.com/Nexlein/Bernstein/actions/workflows/mirror.yml)
+[![CI Pipeline](https://github.com/Maeva2630/Bernstein/actions/workflows/ci.yml/badge.svg)](https://github.com/Maeva2630/Bernstein/actions/workflows/ci.yml)
 
 > **Epitech Tek3 DevOps Project**  
 > Complete Kubernetes orchestration of a distributed microservices voting application (_Poll_, _Redis_, _Worker_, _PostgreSQL_, _Result_) with private registry pipeline, strict zero-downtime updates, and production best practices.
@@ -78,9 +77,7 @@ How we know it works, what each test proves and does not prove, and how to rerun
 
 ---
 
-## Roadmap & Decisions
-
-Work is tracked as GitHub issues, grouped into 4 epics: [Registry & pipeline](https://github.com/Nexlein/Bernstein/issues/43), [K8s manifests](https://github.com/Nexlein/Bernstein/issues/44), [Zero-downtime & resilience](https://github.com/Nexlein/Bernstein/issues/45), [Docs & defense](https://github.com/Nexlein/Bernstein/issues/46). Start from the lowest open issue; dependencies are set as "blocked by".
+## Architecture & Decisions
 
 Technical choices, one Architecture Decision Record (ADR) each, with pros, cons and rejected alternatives: [`doc/adr/`](doc/adr/README.md).
 
@@ -113,3 +110,9 @@ Step-by-step AKS cluster & ACR registry setup guide: [`doc/setup/cluster-setup.m
 - **Zero-Downtime Rolling Updates**: User-facing services (`poll`, `result`) must maintain 100% availability during rolling deployments (`maxUnavailable: 0`, `readinessProbe` enabled, replicas $\ge 2$).
 - **Secret Isolation**: The database passwords are never committed to Git and are configured via a Kubernetes Secret generated from `k8s/secrets.env` (template: `k8s/secrets.env.example`). CI logs in to Azure with OIDC: no cloud password or token is stored in GitHub.
 - **High Availability & Persistence**: PostgreSQL data is mounted on a `PersistentVolumeClaim` (PVC), and all pods specify CPU/Memory resource requests and limits.
+
+---
+
+## Credits
+
+Built as an Epitech Tek3 DevOps group project by **Maëva Arroniz** ([@Maeva2630](https://github.com/Maeva2630)) and **Nielsen Combe-Bracciale** ([@Nexlein](https://github.com/Nexlein)).
